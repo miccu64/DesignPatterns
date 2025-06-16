@@ -1,48 +1,35 @@
 ﻿using DesignPatterns.Builder.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace DesignPatterns.Builder.Elements
 {
-    internal class Field : IComparable<Field>
+    internal class Field
     {
-        private readonly string _field;
-        private readonly string _type;
+        public string FieldName { get; }
+        public string TypeName { get; }
 
         public Field(string field, string type)
         {
             NameUtils.ValidateClassOrFieldName(field);
             ValidateTypeName(type);
 
-            _field = field;
-            _type = type;
+            FieldName = field;
+            TypeName = type;
         }
 
         public override string ToString()
         {
-            return $"public {_type} {_field};";
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(_field);
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return GetHashCode() == obj?.GetHashCode();
-        }
-
-        public int CompareTo(Field? other)
-        {
-            return GetHashCode() - (other?.GetHashCode() ?? 0);
+            return $"public {TypeName} {FieldName};";
         }
 
         private static void ValidateTypeName(string typeName)
         {
-            List<string> allowedTypes =
-            [
+            List<string> allowedTypes = new List<string>
+            {
                 "string",
                 "int"
-            ];
+            };
             if (!allowedTypes.Contains(typeName))
                 throw new ArgumentException("Incorrect type name.");
         }

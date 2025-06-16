@@ -1,4 +1,7 @@
-﻿namespace DesignPatterns.Builder.Utils
+﻿using System;
+using System.Linq;
+
+namespace DesignPatterns.Builder.Utils
 {
     internal static class NameUtils
     {
@@ -6,10 +9,15 @@
         {
             if (string.IsNullOrEmpty(fieldName))
                 throw new ArgumentNullException(nameof(fieldName));
-            if (char.IsAsciiDigit(fieldName[0]))
+            if (char.IsDigit(fieldName[0]))
                 throw new ArgumentException("Field name cannot start with number.");
-            if (fieldName.Any(c => !char.IsAsciiLetterOrDigit(c) && c != '_'))
+            if (fieldName.Any(c => !char.IsLetterOrDigit(c) && IsAscii(c) && c != '_'))
                 throw new ArgumentException("Field name contains incorrect letters.");
+        }
+
+        private static bool IsAscii(char c)
+        {
+            return c < 128;
         }
     }
 }
