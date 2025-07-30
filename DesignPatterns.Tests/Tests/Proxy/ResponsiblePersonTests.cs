@@ -54,6 +54,7 @@ namespace DesignPatterns.Tests.Tests.Proxy
 
             // Act / Assert
             Assert.Equal(person1.DrinkAndDrive(), person2.DrinkAndDrive());
+            Assert.Equal(responsiblePerson1.DrinkAndDrive(), responsiblePerson2.DrinkAndDrive());
         }
     }
 }
