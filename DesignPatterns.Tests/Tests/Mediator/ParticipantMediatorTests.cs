@@ -7,7 +7,7 @@ namespace DesignPatterns.Tests.Tests.Mediator
     public class ParticipantMediatorTests
     {
         [Fact]
-        public void T()
+        public void Two_Participants_Send_Each_One_Message()
         {
             // Arrange
             ParticipantMediator mediator = new();
